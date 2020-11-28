@@ -32,8 +32,7 @@ export default function DataBinDing() {
                     <p class="card-text">Mã sinh viên: {sinhVien.maSV}</p>
                 </div>
             </div>
-            <div className="mt-100"></div>
-            {renderImg()}
+            {renderImg()}            
         </div>
     )
 }
