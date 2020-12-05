@@ -13,6 +13,8 @@ import BaiTapRenderDanhSachPhim from './RenderWithMap/BaiTapRenderDanhSachPhim';
 import DemoProps from './DataBinding/Props/DemoProps';
 import ProductRCC from './DataBinding/Props/ProductRCC';
 import ProductListRcc from './DataBinding/Props/ProductListRcc';
+import PropsWithEvent from './DataBinding/Props/PropsWithEvent';
+import BaiTapGioHangRedux from './BaiTapRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
 
 function App() {
   return (
@@ -22,7 +24,7 @@ function App() {
      <DemoReactClassComponent></DemoReactClassComponent> */}
 
       {/* <BaiTapLayout></BaiTapLayout> */}
-
+{/*  */}
       {/* <DataBinDing /> */}
 
       {/* <DataBIndingClassComponent/> */}
@@ -32,7 +34,9 @@ function App() {
       {/* <RenderWithMap/> */}
       {/* <BaiTapRenderDanhSachPhim></BaiTapRenderDanhSachPhim> */}
       {/* <DemoProps/> */}
-      <ProductListRcc/>
+      {/* <ProductListRcc/> */}
+      {/* <PropsWithEvent/> */}
+      <BaiTapGioHangRedux/>
     </div>
   );
 }

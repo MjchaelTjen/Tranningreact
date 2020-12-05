@@ -3,9 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// Cấu hình redux
+import { Provider } from "react-redux"
+import { store } from "./redux/configStore"
 
 ReactDOM.render(
-  <App />,
+  // Bao thẻ <App/> bằng  <Provider></Provider>
+  <Provider store={store}>
+    <App />
+  </Provider>,
+
   document.getElementById('root')
 );
 
