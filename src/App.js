@@ -15,8 +15,9 @@ import BaiTapGameXucSac from './BaiTapRedux/BaiTapGameXucSac/BaiTapGameXucSac';
 // import ProductRCC from './DataBinding/Props/ProductRCC';
 // import ProductListRcc from './DataBinding/Props/ProductListRcc';
 // import PropsWithEvent from './DataBinding/Props/PropsWithEvent';
-// import BaiTapGioHangRedux from './BaiTapRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
- 
+import BaiTapGioHangRedux from './BaiTapRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
+import QuanLySinhVien from './Form/BaiTapQuanLySinhVien';
+
 function App() {
   return (
     <div className="App">
@@ -38,7 +39,8 @@ function App() {
       {/* <ProductListRcc/> */}
       {/* <PropsWithEvent/> */}
       {/* <BaiTapGioHangRedux/> */}
-      <BaiTapGameXucSac />
+      {/* <BaiTapGameXucSac /> */}
+      <QuanLySinhVien />
     </div>
   );
 }

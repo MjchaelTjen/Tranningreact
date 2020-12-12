@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 
 class GioHang extends Component {
     render() {
-        console.log("gioHang", this.props.gioHang)
+        // console.log("gioHang", this.props.gioHang)
         let { gioHang } = this.props;
         return (
             <div>
@@ -29,12 +29,12 @@ class GioHang extends Component {
                                 <td>{spgh.tenSP}</td>
                                 <td><img src={spgh.hinhAnh} width="50" height="50"></img></td>
                                 <td>
-                                    <button className="btn btn-success" onClick={()=>{
-                                        this.props.tangGiamSoLuong(spgh.maSP,1)
+                                    <button className="btn btn-success" onClick={() => {
+                                        this.props.tangGiamSoLuong(spgh.maSP, 1)
                                     }}>+</button>
                                     {spgh.soLuong}
-                                    <button className="btn btn-success" onClick={()=>{
-                                        this.props.tangGiamSoLuong(spgh.maSP,-1)
+                                    <button className="btn btn-success" onClick={() => {
+                                        this.props.tangGiamSoLuong(spgh.maSP, -1)
                                     }}>-</button>
 
                                 </td>
@@ -81,6 +81,7 @@ const mapDispatchToProps = (dispatch) => {
                 soLuong: soLuong
             };
             // đưa dữ liệu lên reducer
+            // console.log("Giỏ hang",action)
             dispatch(action);
         }
     }
