@@ -41,18 +41,21 @@ class FormSinhVien extends Component {
         if (typeInput === 'email') {
             const regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-            // if(   value.trim() === '')
-            // {
-            //     newErrors[name] =  name + 'không được bỏ trống !';
-            // }
-            if (!regexEmail.test(value)) {
+            if (value.trim() === '') {
+                newErrors[name] = name + 'không được bỏ trống !';
+            }
+            else if (!regexEmail.test(value)) {
                 newErrors[name] = name + 'không đúng định dạng!'
             }
         }
 
         if (typeInput === 'phone') {
             const regexNumber = /^[0-9]+$/;
-            if (!regexNumber.test(value)) {
+            if (value.trim() === '') {
+                newErrors[name] = name + 'không được bỏ trống !';
+
+            }
+            else if (!regexNumber.test(value)) {
                 newErrors[name] = name + 'không đúng định dạng!'
             }
         }
@@ -153,7 +156,10 @@ class FormSinhVien extends Component {
 
                             </div>
                         </div>
-                        <button className='btn btn-success' type='submit'>Thêm sinh viên</button>
+                        <button className='btn btn-success mr-5' type='submit'>Thêm sinh viên</button>
+                        <button className='btn btn-success' type='button' onClick={() => {
+
+                        }}>Update</button>
                     </div>
                 </div>
             </form>
