@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-class FormSinhVien extends Component {
+class FormSinhVienRedux extends Component {
     state = {
         values: {
             maSV: '',
@@ -24,27 +24,21 @@ class FormSinhVien extends Component {
         // this.setState({
         //     [name]: value
         // }, () => {
-        //     console.log('stateSinhVien', this.state);
+        //     console.log('stateSinhVien', this.props.sinhVienRedux);
         // })
 
         // Xử lí cập nhật value
-        const newValues = { ...this.state.values } // lưu giữ lại các giá trị trước người dùng đã nhập
+        const newValues = { ...this.props.sinhVienRedux.values } // lưu giữ lại các giá trị trước người dùng đã nhập
         newValues[name] = value; // Gán giá trị mới chó thuộc tính đang nhập
 
 
         // xử lý errors
-        const newErrors = { ...this.state.errors }; // giữ lại cá giá trị errors cũ
+        const newErrors = { ...this.props.sinhVienRedux.errors }; // giữ lại cá giá trị errors cũ
         // Nếu value của trường đang nhập bị rỗng thi gán lại lỗi đó cho trường đang nhập đó
         newErrors[name] = value.trim() === '' ? name + 'không được bỏ trống !' : '';
 
-        console.log("err", newErrors)
         if (typeInput === 'email') {
             const regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-            // if(   value.trim() === '')
-            // {
-            //     newErrors[name] =  name + 'không được bỏ trống !';
-            // }
             if (!regexEmail.test(value)) {
                 newErrors[name] = name + 'không đúng định dạng!'
             }
@@ -58,11 +52,18 @@ class FormSinhVien extends Component {
         }
 
         // setState lại
-        this.setState({
-            values: newValues,
-            errors: newErrors
-        }, () => {
-            console.log(this.state)
+        // this.setState({
+        //     values: newValues,
+        //     errors: newErrors
+        // }, () => {
+        //     console.log(this.props.sinhVienRedux)
+        // })
+        this.props.dispatch({
+            type: "SET_SV_REDUX",
+            sinhVienRedux: {
+                values: newValues,
+                errors: newErrors
+            }
         })
     }
 
@@ -70,15 +71,15 @@ class FormSinhVien extends Component {
         event.preventDefault(); // Chặn sự kiện submit của browser khi người dùng submit = reactform
         // Kiểm tra dữ liệu người dùng hợp lệ => submit
         let valid = true;
-        // Kiểm tra tất cả thuộc tính trong this.state.values
-        // for (let key in this.state.values) {
-        //     if (this.state.values[key].trim() === '') {
+        // Kiểm tra tất cả thuộc tính trong this.props.sinhVienRedux.values
+        // for (let key in this.props.sinhVienRedux.values) {
+        //     if (this.props.sinhVienRedux.values[key].trim() === '') {
         //         valid = false;
         //     }
         // }
-        // kiểm tra tất cả các thuộc tính của this.state.errors
-        // for (let key in this.state.errors) {
-        //     if (this.state.errors[key] !== '') {
+        // kiểm tra tất cả các thuộc tính của this.props.sinhVienRedux.errors
+        // for (let key in this.props.sinhVienRedux.errors) {
+        //     if (this.props.sinhVienRedux.errors[key] !== '') {
         //         valid = false;
         //     }
         // }
@@ -89,24 +90,16 @@ class FormSinhVien extends Component {
         // xử lí submit => api hoặc redux (dispatch).....
         this.props.dispatch({
             type: 'THEM_SINH_VIEN',
-            sinhVien: this.state.values
+            sinhVien: this.props.sinhVienRedux.values
         })
 
 
     }
 
-    componentWillReceiveProps(newProps) {
-        // Props từ redux gán vào state của component
-        this.setState({
-            values: newProps.svUdate
-        });
 
-
-        // sau đó binding giá trị này lên giao diện tư state
-    }
 
     render() {
-        let { maSV, tenSV, email, soDT } = this.state.values;
+        let { maSV, tenSV, email, soDT } = this.props.sinhVienRedux.values;
 
         return (
             <form className="card text-left" onSubmit={this.handleSubmit}>
@@ -120,7 +113,7 @@ class FormSinhVien extends Component {
                                     onChange={
                                         this.handleChangeInput
                                     } value={maSV} />
-                                <p className='text text-danger'>{this.state.errors.maSV}</p>
+                                <p className='text text-danger'>{this.props.sinhVienRedux.errors.maSV}</p>
 
                             </div>
                             <div className="form-group">
@@ -129,7 +122,7 @@ class FormSinhVien extends Component {
                                     onChange={
                                         this.handleChangeInput
                                     } value={tenSV} />
-                                <p className='text text-danger'>{this.state.errors.tenSV}</p>
+                                <p className='text text-danger'>{this.props.sinhVienRedux.errors.tenSV}</p>
 
                             </div>
                         </div>
@@ -140,7 +133,7 @@ class FormSinhVien extends Component {
                                     onChange={
                                         this.handleChangeInput
                                     } value={email} />
-                                <p className='text text-danger'>{this.state.errors.email}</p>
+                                <p className='text text-danger'>{this.props.sinhVienRedux.errors.email}</p>
 
                             </div>
                             <div className="form-group">
@@ -149,11 +142,16 @@ class FormSinhVien extends Component {
                                     onChange={
                                         this.handleChangeInput
                                     } value={soDT} />
-                                <p className='text text-danger'>{this.state.errors.soDT}</p>
+                                <p className='text text-danger'>{this.props.sinhVienRedux.errors.soDT}</p>
 
                             </div>
                         </div>
                         <button className='btn btn-success' type='submit'>Thêm sinh viên</button>
+                        <button className='btn btn-success' type='button'/* thuộc tính type='button' này sẽ ko gọi lại submit để ko thêm phần tử nữa */ onClick={() => {
+                            this.props.dispatch({
+                                type: 'CAP_NHAT_SINH_VIEN'
+                            })
+                        }}>Update</button>
                     </div>
                 </div>
             </form>
@@ -165,7 +163,7 @@ class FormSinhVien extends Component {
 
 
 const mapStateToProps = (state) => ({
-    svUdate: state.QuanLySinhVienRdeucer.svUpdated
+    sinhVienRedux: state.QuanLySinhVienRdeucer.sinhVienRedux
 })
 
-export default connect(mapStateToProps)(FormSinhVien);
+export default connect(mapStateToProps)(FormSinhVienRedux);
