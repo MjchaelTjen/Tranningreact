@@ -17,6 +17,7 @@ import BaiTapGameXucSac from './BaiTapRedux/BaiTapGameXucSac/BaiTapGameXucSac';
 // import PropsWithEvent from './DataBinding/Props/PropsWithEvent';
 import BaiTapGioHangRedux from './BaiTapRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
 import QuanLySinhVien from './Form/BaiTapQuanLySinhVien';
+import ReactLifeCycle from './ReactLifeCycle/ReactLifeCycle';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
       {/* <BaiTapGioHangRedux/> */}
       {/* <BaiTapGameXucSac /> */}
       <QuanLySinhVien />
+      {/* <ReactLifeCycle /> */}
     </div>
   );
 }

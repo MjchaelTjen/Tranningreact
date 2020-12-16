@@ -3,9 +3,10 @@ import { combineReducers, createStore } from "redux"
 
 
 // import state giỏ hàng
-import {GioHangReducer} from "./GioHangReducer"
+import { GioHangReducer } from "./GioHangReducer"
 // import state game xúc sắc
-import{BaiTapGameXucSacReducer} from './BaiTapGameXucSacReducer'
+import { BaiTapGameXucSacReducer } from './BaiTapGameXucSacReducer'
+import { QuanLySinhVienRdeucer } from './QuanLySinhVienReducer'
 const rootReducer = combineReducers({
     // các state sau này khai báo tại đây
     // stateGioHang: (state = stateGioHang, action) => {
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     // }
     // khai báo cá state của ứng dụng
     StateGioHang: GioHangReducer,
-    StateGameXucSac:BaiTapGameXucSacReducer
+    StateGameXucSac: BaiTapGameXucSacReducer,
+    QuanLySinhVienRdeucer
 })
 
 // Tạo ra store chứa rootReducer (xem như state tổng của ứng dụng)
